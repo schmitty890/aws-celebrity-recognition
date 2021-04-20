@@ -11,6 +11,7 @@ const app = express();
 const upload = multer({ dest: "uploads/" });
 
 const { uploadFile } = require("./s3");
+const PORT = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
 app.post("/images", upload.single("image"), async (req, res) => {
   try {
@@ -66,4 +67,4 @@ app.post("/images", upload.single("image"), async (req, res) => {
   }
 });
 
-app.listen(8080, () => console.log("listening on port 8080"));
+app.listen(PORT, () => console.log("listening on port 8080"));
