@@ -22,9 +22,9 @@ let hostURL =
 const options = {
   swaggerDefinition: {
     info: {
-      title: "database API",
+      title: "ITIS 6177 celebrity rekognition",
       version: "1.0.0",
-      description: "swagger description for api",
+      description: "endpoints for aws celebrity rekognition images",
     },
     host: hostURL,
     basePath: "/",
