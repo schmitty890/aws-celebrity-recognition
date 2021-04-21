@@ -80,8 +80,21 @@ app.post("/images", upload.single("image"), async (req, res) => {
             Bucket: process.env.AWS_BUCKET_NAME,
           })
           .promise();
-        // console.log(response);
+        // console.log(response.Contents);
+        // response.Contents.forEach((item) => {
+        //   console.log("----LOOP FOREACH START-----");
+        //   console.log(item);
+        //   console.log("----LOOP FOREACH END-----");
+        // });
+
+        const newArr = response.Contents.sort(
+          (a, b) => b.LastModified - a.LastModified
+        );
+        // console.log("----SORTED ARRAY START-----");
+        // console.log(newArr);
+        // console.log("-----SORTED ARRAY END----");
         // console.log("------------");
+        // console.log(newArr[0].Key);
         // console.log(response.Contents[0].Key);
         // console.log("------------");
         //input parameters
@@ -89,7 +102,7 @@ app.post("/images", upload.single("image"), async (req, res) => {
           Image: {
             S3Object: {
               Bucket: response.Name,
-              Name: response.Contents[0].Key,
+              Name: newArr[0].Key,
             },
           },
         };
@@ -151,12 +164,15 @@ app.get("/latestImage", async (req, res) => {
     // console.log("------------");
     // console.log(response.Contents[0].Key);
     // console.log("------------");
+    const newArr = response.Contents.sort(
+      (a, b) => b.LastModified - a.LastModified
+    );
     //input parameters
     var params = {
       Image: {
         S3Object: {
           Bucket: response.Name,
-          Name: response.Contents[0].Key,
+          Name: newArr[0].Key,
         },
       },
     };
