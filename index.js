@@ -9,10 +9,55 @@ const multer = require("multer");
 const path = require("path");
 const app = express();
 const upload = multer({ dest: "uploads/" });
-
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 const { uploadFile } = require("./s3");
 const PORT = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
+let hostURL =
+  PORT === 8080
+    ? "localhost:8080"
+    : "aws-celebrity-recognition-6k8zj.ondigitalocean.app";
+
+const options = {
+  swaggerDefinition: {
+    info: {
+      title: "database API",
+      version: "1.0.0",
+      description: "swagger description for api",
+    },
+    host: hostURL,
+    basePath: "/",
+  },
+  apis: ["./index.js"],
+};
+const specs = swaggerJsdoc(options);
+
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(specs));
+
+/**
+ * @swagger
+ * /images:
+ *    post:
+ *      description: Add one image
+ *      consumes:
+ *          - multipart/form-data
+ *      produces:
+ *          - application/json
+ *      parameters:
+ *          - in: formData
+ *            name: image
+ *            description: An image
+ *            type: file
+ *            required: true
+ *      responses:
+ *          200:
+ *              description: Add an image
+ *          400:
+ *              description: Error from parameters
+ *          500:
+ *              description: Server Error
+ */
 app.post("/images", upload.single("image"), async (req, res) => {
   try {
     const file = req.file;
@@ -67,6 +112,17 @@ app.post("/images", upload.single("image"), async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /latestImage:
+ *    get:
+ *      description: Return latest image
+ *      consumes:
+ *          - application/json
+ *      responses:
+ *          200:
+ *              description: Returns the latest object in image array
+ */
 app.get("/latestImage", async (req, res) => {
   try {
     AWS.config.setPromisesDependency();
