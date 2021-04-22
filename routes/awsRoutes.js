@@ -37,10 +37,10 @@ const routes = (app) => {
 
   // api route get last uploaded image
   app
-    .route("/latestImage")
+    .route("/api/v1/latestImageUploaded")
     /**
      * @swagger
-     * /latestImage:
+     * /api/v1/latestImageUploaded:
      *    get:
      *      description: Return latest image
      *      consumes:
@@ -53,10 +53,10 @@ const routes = (app) => {
 
   // api route upload image
   app
-    .route("/images")
+    .route("/api/v1/upload")
     /**
      * @swagger
-     * /images:
+     * /api/v1/upload:
      *    post:
      *      description: Add one image
      *      consumes:
