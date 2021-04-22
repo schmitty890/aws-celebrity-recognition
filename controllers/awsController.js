@@ -1,6 +1,6 @@
 require("dotenv").config();
 const AWS = require("aws-sdk");
-import { uploadFile } from "../s3";
+import { uploadFile } from "../helpers/s3helpers";
 const multer = require("multer");
 const util = require("util");
 const fs = require("fs");
