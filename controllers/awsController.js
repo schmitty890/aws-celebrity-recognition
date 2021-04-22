@@ -78,13 +78,8 @@ export const uploadFileFromUser = async (req, res) => {
             Bucket: process.env.AWS_BUCKET_NAME,
           })
           .promise();
-        // console.log(response.Contents);
-        // response.Contents.forEach((item) => {
-        //   console.log("----LOOP FOREACH START-----");
-        //   console.log(item);
-        //   console.log("----LOOP FOREACH END-----");
-        // });
 
+        // sorting returned objects by time uploaded as they are not always in the correct order
         const newArr = response.Contents.sort(
           (a, b) => b.LastModified - a.LastModified
         );
