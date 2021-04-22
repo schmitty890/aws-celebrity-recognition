@@ -24,10 +24,8 @@ There are multiple ways to interact with this API. Below I will describe and sho
 3. Click `Send` to send the post request. If you chose a jpg, jpeg or png and it is above a certain size, it will be uploaded and you should receive a response.
    ![screenshot](./images/post3.png)
 
-4. If you want to get the latest image added, toggle your CRUD action to make a `GET` request and change the url endpoint to `https://aws-celebrity-recognition-6k8zj.ondigitalocean.app/api/v1/latestImageUploaded`.
-
-Click `Send` and returned will be the last image uploaded.
-![screenshot](./images/get1.png)
+4. If you want to get the latest image added, toggle your CRUD action to make a `GET` request and change the url endpoint to `https://aws-celebrity-recognition-6k8zj.ondigitalocean.app/api/v1/latestImageUploaded`. Click `Send` and returned will be the last image uploaded.
+   ![screenshot](./images/get1.png)
 
 ### Swagger Docs
 
