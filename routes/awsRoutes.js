@@ -1,12 +1,12 @@
-const {
+import {
   getLatestImage,
   uploadFileFromUser,
-} = require("../controllers/awsController");
-const swaggerJsdoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
-const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
+} from "../controllers/awsController";
+import swaggerJsdoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
+import multer from "multer";
 
+const upload = multer({ dest: "uploads/" });
 // determine port server is running on
 const PORT = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 // determine port for swagger docs

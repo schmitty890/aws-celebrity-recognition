@@ -1,9 +1,10 @@
 require("dotenv").config();
-const AWS = require("aws-sdk");
+import AWS from "aws-sdk";
 import { uploadFile } from "../helpers/s3helpers";
-const multer = require("multer");
-const util = require("util");
-const fs = require("fs");
+import multer from "multer";
+import util from "util";
+import fs from "fs";
+
 const unlinkFile = util.promisify(fs.unlink);
 
 export const getLatestImage = async (req, res) => {
