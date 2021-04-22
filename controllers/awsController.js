@@ -60,7 +60,12 @@ export const getLatestImage = async (req, res) => {
 export const uploadFileFromUser = async (req, res) => {
   try {
     const file = req.file;
-    if (req.file.mimetype == "image/jpeg" && req.file.size >= 400) {
+    if (
+      (file.mimetype == "image/jpeg" ||
+        file.mimetype == "image/jpg" ||
+        file.mimetype == "image/png") &&
+      req.file.size >= 400
+    ) {
       // file type has to be jpeg and file size has to be greater than 400 bytes (100 pixels)
       const result = await uploadFile(file);
       await unlinkFile(file.path);
