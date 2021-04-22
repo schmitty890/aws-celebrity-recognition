@@ -42,6 +42,8 @@ const routes = (app) => {
      * @swagger
      * /api/v1/latestImageUploaded:
      *    get:
+     *      tags:
+     *          - aws endpoints
      *      description: Return latest image
      *      consumes:
      *          - application/json
@@ -58,6 +60,8 @@ const routes = (app) => {
      * @swagger
      * /api/v1/upload:
      *    post:
+     *      tags:
+     *          - aws endpoints
      *      description: Add one image
      *      consumes:
      *          - multipart/form-data
